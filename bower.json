@@ -1,0 +1,19 @@
+{
+  "name": "todoApp",
+  "homepage": "https://github.com/andela-aoduola/todoApp",
+  "authors": [
+    "Oduola Akeem <(none)>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/lib",
+    "test",
+    "tests"
+  ]
+}
