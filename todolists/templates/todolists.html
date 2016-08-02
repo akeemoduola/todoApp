@@ -17,7 +17,7 @@
               </div>
               <ul class="list-group list-group-flush">
                   {% for todoitem in todolist.items.all %}
-                      <li class="list-group-item">{{ todoitem.text }}<input type="checkbox" class="pull-xs-right"></li>
+                      <li class="list-group-item"><stong>{{ todoitem.text }}</stong><input type="checkbox" class="pull-xs-right strikethrough"></li>
                   {% endfor %}
               </ul>
               </div>

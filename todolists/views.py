@@ -54,7 +54,7 @@ class Index(View):
             return render(request, self.template_name, context)
 
 
-class TodoLists(View):
+class TodoLists(LoginRequiredMixin, View):
     def get(self, request):
         params = {
             "todolists": request.user.todolists.all()
