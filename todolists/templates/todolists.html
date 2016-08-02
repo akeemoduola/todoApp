@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h3>&nbsp;</h3>
+        {% for todolist in todolists %}
+            <div class="col-sm-6 m-t-3">
+              <div class="card">
+                  <h4 class="card-header">{{ todolist.name }}</h4>
+                  <div class="card-block">
+                  <p class="card-text">{{ todolist.description }}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  {% for todoitem in todolist.items.all %}
+                      <li class="list-group-item">{{ todoitem.text }}<input type="checkbox" class="pull-xs-right"></li>
+                  {% endfor %}
+              </ul>
+              </div>
+            </div>
+        {% endfor %}
+{% endblock %}
