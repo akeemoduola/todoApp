@@ -12,15 +12,14 @@
         {% for todolist in todolists %}
             <div class="col-sm-6 m-t-3">
               <div class="card">
-                  <h4 class="card-header">{{ todolist.name }}
-                      <span data-toggle="modal" data-target="#todolistModal"
-                            data-placement="bottom" class="glyphicon glyphicon-plus"></span></h4>
+                  <h4 class="card-header bg-primary">{{ todolist.name }}</h4>
                   <div class="card-block">
-                  <p class="card-text">{{ todolist.description }}</p>
+                  <p class="card-text text-info text-sm-center">{{ todolist.description }}</p>
               </div>
               <ul class="list-group list-group-flush">
                   {% for todoitem in todolist.items.all %}
-                      <li class="list-group-item">{{ todoitem.text }}
+                      <li class="list-group-item"><span data-toggle="modal" data-target="#todolistItemModal"
+                            data-placement="bottom" class="fa-plus-circle"></span>{{ todoitem.text }}
                           <input type="checkbox" class="pull-xs-right strikethrough"></li>
                   {% endfor %}
               </ul>
