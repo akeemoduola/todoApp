@@ -21,6 +21,8 @@ def url_redirect(request):
     )
 def logout_user(request):
     logout(request)
+    messages.success(request, 'Successfully logged Out')
+
     return redirect('/')
 
 class Index(View):
