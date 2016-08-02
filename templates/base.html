@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'lib/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'lib/tether/dist/css/tether.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/bootstrap/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" />
     <title>
         Todo List App
@@ -20,11 +21,21 @@
       </button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
         <a class="navbar-brand" href="#">TodoList</a>
-        <form class="form-inline pull-xs-right" action="{% url 'index' %}">
-            <input class="form-control" type="text" placeholder="Enter your username">
-            <input class="form-control" type="password" placeholder="Enter your Password">
+      {% if not request.user.is_authenticated %}
+        <form class="form-inline pull-xs-right" action="{% url 'index' %}" method="POST">
+            {% if messages %}
+                    {% for message in messages %}
+                        <p class="alert bg-{{message.tags}}" role="alert">
+                            {{ message }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+            {% csrf_token %}
+           {{ login_form.username }} {{ login_form.username.errors }}
+           {{ login_form.password }} {{ login_form.password.errors }}
             <button class="btn btn-outline-success" type="submit">Sign In</button>
         </form>
+      {%  endif %}
       </div>
     </nav>
 
