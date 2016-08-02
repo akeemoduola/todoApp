@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from todolists.views import Index
+from todolists.views import Index, TodoLists, SignUpView
+from django.contrib.auth import views as auth_views
 
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', Index.as_view(), name='index'),
+    url(r'^dashboard/$', TodoLists.as_view(), name='todolists'),
+    url(r'^signup/$', SignUpView.as_view(), name='signup'),
     url(r'^admin/', admin.site.urls),
+    url(r'^logout', auth_views.logout, name='logout'),
+
 ]

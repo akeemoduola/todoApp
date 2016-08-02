@@ -2,10 +2,16 @@
 {% load staticfiles %}
 {% block content %}
     <h3>&nbsp;</h3>
+    <div class="row">
+        <a class="btn btn-success new-todo-list m-t-3 " data-toggle="modal" data-target="#todolistModal" data-placement="bottom" title="Add Todo List">
+            <span class="glyphicon glyphicon-plus"></span> Add Todolist
+        </a>
+    </div>
+
         {% for todolist in todolists %}
             <div class="col-sm-6 m-t-3">
               <div class="card">
-                  <h4 class="card-header">{{ todolist.name }}</h4>
+                  <h4 class="card-header">{{ todolist.name }}<span data-toggle="modal" data-target="#todolistModal" data-placement="bottom" class="glyphicon glyphicon-plus"></span></h4>
                   <div class="card-block">
                   <p class="card-text">{{ todolist.description }}</p>
               </div>
@@ -17,4 +23,7 @@
               </div>
             </div>
         {% endfor %}
+
+    {% include 'new-todolist-model.html' %}
+    {% include 'new-todolist-model.html' %}
 {% endblock %}

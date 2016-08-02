@@ -1,12 +1,14 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib import auth
 
 
 
 class TodoList(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
+    owner = models.ForeignKey(auth.models.User, related_name='todolists')
 
     def __str__(self):
         return self.name
