@@ -27,11 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
-PROEJCT_PATH = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROEJCT_PATH, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 # Application definition
 
