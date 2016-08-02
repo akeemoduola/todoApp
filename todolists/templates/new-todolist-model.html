@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="todolistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -7,22 +8,24 @@
           </button>
           <h4 class="modal-title" id="exampleModalLabel">New Todo List</h4>
         </div>
+          <form action="{% url 'todolists' %}" method="post">
+
         <div class="modal-body">
-          <form>
+                {% csrf_token %}
             <div class="form-group">
               <label for="recipient-name" class="form-control-label">Name:</label>
-              <input type="text" class="form-control" id="recipient-name">
+              {{ new_todolist.name }}
             </div>
             <div class="form-group">
               <label for="message-text" class="form-control-label">Description:</label>
-              <textarea class="form-control" id="message-text"></textarea>
+              {{ new_todolist.description }}
             </div>
-          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add Todo List</button>
+          <button type="submit" class="btn btn-primary">Add Todo List</button>
         </div>
+          </form>
       </div>
     </div>
   </div>

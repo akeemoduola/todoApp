@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from todolists.forms import LoginForm, RegisterForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from todolists.models import TodoList, TodoItem
 from todolists.forms import TodoListForm, TodoItemForm
@@ -19,6 +19,9 @@ def url_redirect(request):
         url,
         context_instance=RequestContext(request)
     )
+def logout_user(request):
+    logout(request)
+    return redirect('/')
 
 class Index(View):
 
@@ -57,7 +60,8 @@ class Index(View):
 class TodoLists(LoginRequiredMixin, View):
     def get(self, request):
         params = {
-            "todolists": request.user.todolists.all()
+            "todolists": request.user.todolists.all(),
+            "new_todolist": TodoListForm()
         }
         return render(request, 'todolists.html', params)
 
@@ -68,6 +72,7 @@ class TodoLists(LoginRequiredMixin, View):
         form = TodoListForm(request.POST)
         todolist = form.save(commit=False)
         todolist.owner = request.user
+        print(request.user)
         todolist.save()
         messages.success(request, todolist.name + ' Successfully created')
         return url_redirect(request)
@@ -85,7 +90,7 @@ class TodoListEditView(LoginRequiredMixin, View):
         items = todolist.items
         context = {}
         context['todoitems'] = items
-        context['todolist'] = TodoList
+        context['todolist'] = todolist
         context['new_item'] = TodoItemForm(auto_id=False)
         return render(request, self.template_name, context)
 
@@ -211,3 +216,4 @@ class ItemEditView(LoginRequiredMixin, View):
         item.save()
         messages.success(request, item.name + ' Successfully updated')
         return url_redirect(request)
+
