@@ -10,7 +10,7 @@ class TodoListTestModels(TestCase):
     def setUp(self):
         self.user = User.objects.create(
             username='inioluwafageyinbo', password='codango')
-        self.bucketlist = TodoList.objects.create(
+        self.todolist = TodoList.objects.create(
             name='test todo',
             owner=self.user,
             description='help file'
