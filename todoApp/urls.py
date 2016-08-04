@@ -32,5 +32,4 @@ urlpatterns = [
     url(r'^todolist/(?P<id>[0-9]+)/items$',
         TodoListAddItemView.as_view(), name='add_item'),
     url(r'^logout/$', logout_user, name='logout'),
-
 ]

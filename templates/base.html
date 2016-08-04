@@ -33,8 +33,10 @@
             {% csrf_token %}
            {{ login_form.username }} {{ login_form.username.errors }}
            {{ login_form.password }} {{ login_form.password.errors }}
-            <button class="btn btn-outline-success" type="submit">Sign In</button>
+            <button class="btn btn-outline-success" type="submit">Log In</button>
         </form>
+         {% else %}
+          <a href="{% url 'logout' %}" class="btn btn-outline-success pull-xs-right" role="button">Logout</a>
       {%  endif %}
       </div>
     </nav>
